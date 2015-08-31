@@ -20,4 +20,6 @@ iris = po.Po('iris.csv')
 iris.query('SepalLength > 6 and PetalWidth > 2')                                  # Query a subset.
 iris.cluster(["SepalLength", "SepalWidth"], method="hierarchical", clusters=3)    # Cluster based on two columns.
 
+
 ```
+Further information on how to select and query Pandas data frames: http://pandas.pydata.org/pandas-docs/stable/indexing.html
