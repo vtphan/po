@@ -9,16 +9,16 @@ Examples:
 ```
 
 import po
-snp = po.Po('snp_known.csv')        # Read into a new data.
+snp = po.read_csv('snp_known.csv')        # Read into a new data.
 a = snp.query('var_prob < 0.6')     # Query a subset into a new data frame.
 b = a[["tp-fp", "var_prob"]]        # Select a subset into a new data frame.
 b.query('tp_fp == "fp"')            # Further query.
 len(b.query('tp_fp == "fp"'))
 
 
-iris = po.Po('iris.csv')
+iris = po.read_csv('iris.csv')
 iris.query('SepalLength > 6 and PetalWidth > 2')                                  # Query a subset.
-iris.cluster(["SepalLength", "SepalWidth"], method="hierarchical", clusters=3)    # Cluster based on two columns.
+iris.Cluster(["SepalLength", "SepalWidth"], method="hierarchical", clusters=3)    # Cluster based on two columns.
 
 
 ```

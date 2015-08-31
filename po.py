@@ -3,12 +3,19 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import kneighbors_graph
 import pandas
 
+def read_csv(filename):
+   df = pandas.read_csv(filename)
+   return Po(df)
+
 class Po(pandas.core.frame.DataFrame):
-   def __init__(self, filename):
-      df = pandas.read_csv(filename)
+   def __init__(self, df):
       super(Po, self).__init__(df)
 
-   def cluster(self, columns, **argv):
+   def query(self, expr, **kwargs):
+      df = super(Po,self).query(expr, **kwargs)
+      return Po(df)
+
+   def Cluster(self, columns, **argv):
       option = {}
       Estimator = dict(kmeans=KMeans, meanshift=MeanShift, dbscan=DBSCAN, hierarchical=AgglomerativeClustering, spectral=SpectralClustering)
 
