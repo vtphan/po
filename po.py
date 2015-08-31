@@ -51,4 +51,5 @@ class Po(pandas.core.frame.DataFrame):
       labels = est.fit_predict(rows)
       self['_'+method+'_'] = labels
       print("\tClustering method: ", method, "\tNumber of clusters: ", len(set(labels)))
+      return self
 
