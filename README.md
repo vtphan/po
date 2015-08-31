@@ -10,8 +10,8 @@ Examples:
 
 import po
 snp = po.read_csv('snp_known.csv')        # Read into a new data.
-a = snp.query('var_prob < 0.6')     # Query a subset into a new data frame.
-b = a[["tp-fp", "var_prob"]]        # Select a subset into a new data frame.
+a = snp.query('var_prob < 0.6')           # Query a subset into a new data frame.
+b = a[["tp-fp", "var_prob"]]              # Select a subset into a new data frame.
 res = b.query('tp_fp == "fp"')            # Further query.
 
 
