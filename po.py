@@ -9,10 +9,10 @@ def read_csv(filename, **kwargs):
 
 class Po(pandas.core.frame.DataFrame):
    def __init__(self, df):
+      self.estimator = None
       super(Po, self).__init__(df)
 
    def query(self, expr, **kwargs):
-      self.estimator = None
       df = super(Po,self).query(expr, **kwargs)
       return Po(df)
 
