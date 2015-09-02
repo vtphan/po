@@ -3,8 +3,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import kneighbors_graph
 import pandas
 
-def read_csv(filename):
-   df = pandas.read_csv(filename)
+def read_csv(filename, **kwargs):
+   df = pandas.read_csv(filename, **kwargs)
    return Po(df)
 
 class Po(pandas.core.frame.DataFrame):
@@ -12,6 +12,7 @@ class Po(pandas.core.frame.DataFrame):
       super(Po, self).__init__(df)
 
    def query(self, expr, **kwargs):
+      self.estimator = None
       df = super(Po,self).query(expr, **kwargs)
       return Po(df)
 
@@ -40,7 +41,7 @@ class Po(pandas.core.frame.DataFrame):
          elif argv.get('method') == 'spectral':
             option['affinity'] = argv.get('affinity', 'rbf')
 
-      est = Estimator.get(method)(**option)
+      self.estimator = Estimator.get(method)(**option)
 
       ## Select data
       rows = self.get(columns)
@@ -48,7 +49,7 @@ class Po(pandas.core.frame.DataFrame):
          rows = StandardScaler().fit_transform(rows)
 
       ## Cluster and store results
-      labels = est.fit_predict(rows)
+      labels = self.estimator.fit_predict(rows)
       self['_'+method+'_'] = labels
       print("\tClustering method: ", method, "\tNumber of clusters: ", len(set(labels)))
       return self
