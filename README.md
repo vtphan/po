@@ -17,11 +17,40 @@ res = b.query('tp_fp == "fp"')            # Further query.
 
 iris = po.read_csv('iris.csv')
 
-# cluster using meanshift, a non-parametric method, by default.
+# Cluster using meanshift, a non-parametric method, by default (when "clusters" is not specified).
 iris.Cluster(["SepalLength", "SepalWidth"])
 
-# cluster on a subset using hierarchical clustering
+# Cluster on a subset using hierarchical clustering
 res = iris.query('SepalLength > 6 and PetalWidth > 2').Cluster(["SepalLength", "SepalWidth"], method="hierarchical", clusters=3)
+
+# Plot distribution
+import matplotlib.pyplot as plt
+
+iris.Plot("SepalLength")
+plt.show()
+
+# Plot numerical versus numerical variables
+iris.Plot("SepalLength", "SepalWidth")
+plt.show()
+
+iris.Plot("SepalLength", "SepalWidth", hue="Species")
+plt.show()
+
+iris.Plot("SepalLength", "SepalWidth", col="Species")
+plt.show()
+
+iris.Plot("SepalLength", "SepalWidth", row="Species")
+plt.show()
+
+# Plot categorical versus numerical variables
+iris.Plot("Species", "SepalLength")
+plt.show()
+
+iris.Plot("Species", "SepalLength", kind="box")
+plt.show()
+
+iris.Plot("Species", "SepalLength", kind="violin")
+plt.show()
 
 ```
 Further information on how to select and query Pandas data frames: http://pandas.pydata.org/pandas-docs/stable/indexing.html
