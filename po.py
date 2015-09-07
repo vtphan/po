@@ -66,6 +66,10 @@ class Po(pandas.core.frame.DataFrame):
             sns.lmplot(x=x, y=y, data=self, **kwargs)
          elif self.dtypes[x] in [object] and self.dtypes[y] in [int, float]:
             sns.factorplot(x=x, y=y, data=self, **kwargs)
+         elif self.dtypes[y] in [object] and self.dtypes[x] in [int, float]:
+            kwargs['orient'] = 'h'
+            sns.factorplot(x=x, y=y, data=self, **kwargs)
+
       else:
          if self.dtypes[x] in [int, float]:
             sns.distplot(self[x], **kwargs)
