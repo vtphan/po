@@ -1,20 +1,20 @@
 from sklearn.cluster import KMeans, DBSCAN, SpectralClustering, AgglomerativeClustering, MeanShift
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import kneighbors_graph
+import seaborn as sns
+
 import pandas
 
 def read_csv(filename, **kwargs):
-   df = pandas.read_csv(filename, **kwargs)
-   return Po(df)
+   return Po(pandas.read_csv(filename, **kwargs))
 
 class Po(pandas.core.frame.DataFrame):
    def __init__(self, df):
-      self.estimator = None
       super(Po, self).__init__(df)
+      self.estimator = None
 
    def query(self, expr, **kwargs):
-      df = super(Po,self).query(expr, **kwargs)
-      return Po(df)
+      return Po(super(Po,self).query(expr, **kwargs))
 
    def Cluster(self, columns, **argv):
       option = {}
@@ -53,4 +53,19 @@ class Po(pandas.core.frame.DataFrame):
       self['_'+method+'_'] = labels
       print("\tClustering method: ", method, "\tNumber of clusters: ", len(set(labels)))
       return self
+
+
+   def Plot(self, x, y=None, **kwargs):
+      if x not in self.dtypes:
+         raise Exception("Unknown column: " + x)
+      if y is not None and y not in self.dtypes:
+         raise Exception("Unknown column: " + y)
+
+      if y is not None:
+         if self.dtypes[x] in [int, float] and self.dtypes[y] in [int, float]:
+            kwargs.setdefault("fit_reg", False)
+            sns.lmplot(x=x, y=y, data=self, **kwargs)
+         elif self.dtypes[x] in [object] and self.dtypes[y] in [int, float]:
+            sns.factorplot(x=x, y=y, data=self, **kwargs)
+
 
