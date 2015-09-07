@@ -2,7 +2,6 @@ from sklearn.cluster import KMeans, DBSCAN, SpectralClustering, AgglomerativeClu
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import kneighbors_graph
 import seaborn as sns
-
 import pandas
 
 def read_csv(filename, **kwargs):
