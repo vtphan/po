@@ -82,11 +82,6 @@ class Po(pandas.core.frame.DataFrame):
          p1, p2 = float(d[0])/float(d[0]+d[1]), float(d[1])/float(d[0]+d[1])
          entropy = - (p1 * math.log(p1) + p2 * math.log(p2)) / math.log(2)
 
-      if i==133:
-         print(i, self[i:i+1])
-         print(self.estimator.cluster_centers_)
-         print(entropy)
-
       return 1 - entropy
 
 
