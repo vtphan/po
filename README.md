@@ -79,7 +79,7 @@ iris.Plot("SepalLength", "SepalWidth", col="Species")
 iris.Plot("SepalLength", "SepalWidth", row="Species")
 ```
 
-When a categorical variable is plot against a numerical variable, the plot can be either a simple point plot, or a [boxplot](https://en.wikipedia.org/wiki/Box_plot), or a [violin plot](https://en.wikipedia.org/wiki/Violin_plot).
+When a categorical variable is plot against a numerical variable, the plot can be either a *point* plot (default), *bar* plot,  *count* plot, a [*box*plot](https://en.wikipedia.org/wiki/Box_plot), or a [*violin* plot](https://en.wikipedia.org/wiki/Violin_plot).
 
 ```
 iris.Plot("Species", "SepalLength")
