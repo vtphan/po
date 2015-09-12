@@ -9,7 +9,7 @@ Po is a Python module facilitates analysis of tabular data.  Po is built on top 
 
 3. Install po from github:  **pip install git+https://github.com/vtphan/po**
 
-#### Upgrade to the latest version
+##### Upgrade to the latest version
 
 + **pip install -U git+https://github.com/vtphan/po**
 
@@ -43,7 +43,7 @@ only_two_cols = iris[["Species", "PetalLength"]]
 
 Consult [pandas documentation](http://pandas.pydata.org/pandas-docs/stable/indexing.html) for further information on how to select and query Pandas data frames.
 
-#### Write a po instance (data frame) to file
+##### Write a po instance (data frame) to file
 
 ```
 setosa.to_csv("setosa.csv")
