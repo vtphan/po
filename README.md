@@ -89,7 +89,7 @@ iris.Plot("Species", "SepalLength", kind="violin")
 
 
 
-<pre style="font: 6px/3px monospace;">
+
                                               `'++`
                                               '+###
                                              `+#+##
@@ -206,4 +206,4 @@ iris.Plot("Species", "SepalLength", kind="violin")
                            '';'++''++++''+++'+++++++++'++
                            ++++++++++##########+++++++##+`
                             '++++++++':`    :+#+++++++#+,
-</pre>
+
