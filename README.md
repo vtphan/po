@@ -14,7 +14,7 @@ iris = po.read_csv("data/iris.csv")
 indels = po.read_csv("data/indels.txt", sep="\t")
 ```
 
-*iris* is a po instance, which is a glorified pandas data frame.
+*iris* is a po instance, which is a glorified pandas data frame.  Thus, a po instance has access to all utilities available to pandas data frames.
 
 ### Query and select data
 
@@ -24,7 +24,8 @@ po instances have a *query* method, which wraps around pandas data frame's query
 a = iris.query('Species == "setosa" and PetalWidth > 0.1')
 ```
 
-Selecting columns:
+Selecting columns by giving a list of column names. The return value is a po instance.
+
 ```
 iris[["Species", "PetalLength"]]
 ```
