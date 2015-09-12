@@ -12,10 +12,23 @@ class Po(pandas.core.frame.DataFrame):
       super(Po, self).__init__(df)
       self.estimator = None
 
+   def __getitem__(self, key):
+      ret = super(Po, self).__getitem__(key)
+      if isinstance(ret, pandas.core.frame.DataFrame):
+         return Po(ret)
+      else:
+         return ret
+
    def query(self, expr, **kwargs):
       return Po(super(Po,self).query(expr, **kwargs))
 
    def Cluster(self, columns, **argv):
+      if type(columns) != list:
+         raise Exception("First parameter must be a list.")
+      unknown_columns = set(columns)-set(self.keys())
+      if unknown_columns != set([]):
+         raise Exception("Invalid columns: " + str(unknown_columns))
+
       option = {}
       Estimator = dict(kmeans=KMeans, meanshift=MeanShift, dbscan=DBSCAN, hierarchical=AgglomerativeClustering, spectral=SpectralClustering)
 
