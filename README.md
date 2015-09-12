@@ -34,7 +34,7 @@ Further information on how to select and query Pandas data frames: http://pandas
 
 ### Cluster rows based on columns
 
-Cluster rows into 3 clusters based on petal widths and lengths.  Clustering is done using k-means.  Cluster labels are placed in a new column called *_kmeans_*.
+Cluster rows into 3 clusters based on petal widths and lengths.  Clustering is done using [k-means](http://scikit-learn.org/stable/modules/clustering.html#k-means).  Cluster labels are placed in a new column called *_kmeans_*.
 
 ```
 iris.Cluster(["PetalWidth", "PetalLength"], clusters=3)
