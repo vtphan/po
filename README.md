@@ -11,10 +11,14 @@ Po is a Python module facilitates analysis of tabular data.  Po is built on top 
 ```
 import po
 iris = po.read_csv("data/iris.csv")
-indels = po.read_csv("data/indels.txt", sep="\t")
 ```
 
 *iris* is a po instance, which is a glorified pandas data frame.  Thus, a po instance has access to all utilities available to pandas data frames.
+
+Tab-separated files can also be read easily.
+```
+indels = po.read_csv("data/indels.txt", sep="\t")
+```
 
 ### Query and select data
 
