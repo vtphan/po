@@ -30,7 +30,7 @@ Selecting columns by giving a list of column names. The return value is a po ins
 iris[["Species", "PetalLength"]]
 ```
 
-Further information on how to select and query Pandas data frames: http://pandas.pydata.org/pandas-docs/stable/indexing.html
+Consult [pandas documentation](http://pandas.pydata.org/pandas-docs/stable/indexing.html) for further information on how to select and query Pandas data frames.
 
 ### Cluster rows based on columns
 
@@ -79,7 +79,7 @@ iris.Plot("SepalLength", "SepalWidth", col="Species")
 iris.Plot("SepalLength", "SepalWidth", row="Species")
 ```
 
-When a categorical variable is plot against a numerical variable, the plot can be either a simple point plot, or a boxplot, or a violin plot.
+When a categorical variable is plot against a numerical variable, the plot can be either a simple point plot, or a [boxplot](https://en.wikipedia.org/wiki/Box_plot), or a [violin plot](https://en.wikipedia.org/wiki/Violin_plot).
 
 ```
 iris.Plot("Species", "SepalLength")
