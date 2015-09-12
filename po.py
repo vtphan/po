@@ -14,11 +14,8 @@ class Po(pandas.core.frame.DataFrame):
       self.estimator = None
 
    def __getitem__(self, key):
-      ret = super(Po, self).__getitem__(key)
-      if isinstance(ret, pandas.core.frame.DataFrame):
-         return Po(ret)
-      else:
-         return ret
+      a = super(Po, self).__getitem__(key)
+      return Po(a) if isinstance(a, pandas.core.frame.DataFrame) else a
 
    def query(self, expr, **kwargs):
       return Po(super(Po,self).query(expr, **kwargs))
