@@ -27,10 +27,16 @@ a = iris.query('Species == "setosa" and PetalWidth > 0.1')
 Selecting columns by giving a list of column names. The return value is a po instance.
 
 ```
-iris[["Species", "PetalLength"]]
+b = iris[["Species", "PetalLength"]]
 ```
 
 Consult [pandas documentation](http://pandas.pydata.org/pandas-docs/stable/indexing.html) for further information on how to select and query Pandas data frames.
+
+#### Write a po instance (data frame) to file
+
+```
+a.to_csv("output.csv")
+```
 
 ### Cluster rows based on columns
 
