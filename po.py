@@ -8,6 +8,9 @@ import matplotlib.pyplot as plt
 def read_csv(filename, **kwargs):
    return Po(pandas.read_csv(filename, **kwargs))
 
+def test():
+   print("here is test")
+
 class Po(pandas.core.frame.DataFrame):
    def __init__(self, df):
       super(Po, self).__init__(df)
