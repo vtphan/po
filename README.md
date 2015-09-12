@@ -83,6 +83,7 @@ When a categorical variable is plot against a numerical variable, the plot can b
 
 ```
 iris.Plot("Species", "SepalLength")
+iris.Plot("Species", "SepalLength", kind="bar")
 iris.Plot("Species", "SepalLength", kind="box")
 iris.Plot("Species", "SepalLength", kind="violin")
 ```
