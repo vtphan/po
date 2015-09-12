@@ -40,13 +40,14 @@ Cluster rows into 3 clusters based on petal widths and lengths.  Clustering is d
 iris.Cluster(["PetalWidth", "PetalLength"], clusters=3)
 ```
 
-In case the number of clusters is not specified, clustering is done using meanshift.  Cluster labels are placed in a new column called *_meanshift_*.
+In case the number of clusters is not specified, clustering is done using [meanshift](http://scikit-learn.org/stable/modules/clustering.html#mean-shift).  Cluster labels are placed in a new column called *_meanshift_*.
 
 ```
 iris.Cluster(["PetalWidth", "PetalLength"])
 ```
 
-Other clusterting methods include hierarchical, spectral, and dbscan.
+Other clusterting methods include [hierarchical clustering](http://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering), [spectral clustering](http://scikit-learn.org/stable/modules/clustering.html#spectral-clustering), and [dbscan.
+](http://scikit-learn.org/stable/modules/clustering.html#dbscan).
 
 ```
 Cluster(["PetalWidth", "PetalLength"], method="hierarchical", clusters=3)
