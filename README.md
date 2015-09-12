@@ -4,7 +4,7 @@ Po is a Python module facilitates analysis of tabular data.  Po is built on top 
 ### Installation
 
 - [Anaconda Python 3](http://continuum.io/downloads#py34).
-- Install seaborn from the anaconda distribution (conda install seaborn.)
+- Install seaborn from the anaconda distribution (*conda install seaborn*).
 
 ### Read data
 
