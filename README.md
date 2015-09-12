@@ -67,8 +67,7 @@ In case the number of clusters is not specified, clustering is done using [means
 iris.Cluster(["PetalWidth", "PetalLength"])
 ```
 
-Other clusterting methods include [hierarchical clustering](http://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering), [spectral clustering](http://scikit-learn.org/stable/modules/clustering.html#spectral-clustering), and [dbscan
-](http://scikit-learn.org/stable/modules/clustering.html#dbscan).
+Other clusterting methods include [hierarchical clustering](http://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering), [spectral clustering](http://scikit-learn.org/stable/modules/clustering.html#spectral-clustering), and [dbscan](http://scikit-learn.org/stable/modules/clustering.html#dbscan).
 
 ```
 iris.Cluster(["PetalWidth", "PetalLength"], method="hierarchical", clusters=3)
