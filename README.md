@@ -3,6 +3,8 @@ Po is a Python module facilitates analysis of tabular data.  Po is built on top 
 
 ### Installation
 
+##### Fresh install
+
 1. Install [Anaconda distribution](http://continuum.io/downloads) with Python 3.  Po requires pandas, matplotlib, scikit-learn, and seaborn.  By default, pandas, matplotlib and scikit-learn are installed by anaconda.
 
 2. Install seaborn:  **conda install seaborn**
