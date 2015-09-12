@@ -4,6 +4,7 @@ from sklearn.neighbors import kneighbors_graph
 import seaborn as sns
 import pandas
 import matplotlib.pyplot as plt
+import math
 
 def read_csv(filename, **kwargs):
    return Po(pandas.read_csv(filename, **kwargs))
@@ -61,8 +62,32 @@ class Po(pandas.core.frame.DataFrame):
       ## Cluster and store results
       labels = self.estimator.fit_predict(rows)
       self['_'+method+'_'] = labels
+
+      if method == 'kmeans':
+         p = [ self.get(c) for c in columns ]
+         self['_certainty_'] = [ self.point_entropy(p, i) for i in range(len(p[0])) ]
+
       print("\tClustering method: ", method, "\tNumber of clusters: ", len(set(labels)))
-      return self
+
+
+   def point_entropy(self, points, i):
+      d = []
+
+      for c in self.estimator.cluster_centers_:
+         d.append(math.sqrt(sum((points[j][i]-c[j])**2 for j in range(len(points)))))
+      d.sort()
+      if d[0] == 0:
+         entropy = 1 if d[1] != 0 else 0
+      else:
+         p1, p2 = float(d[0])/float(d[0]+d[1]), float(d[1])/float(d[0]+d[1])
+         entropy = - (p1 * math.log(p1) + p2 * math.log(p2)) / math.log(2)
+
+      if i==133:
+         print(i, self[i:i+1])
+         print(self.estimator.cluster_centers_)
+         print(entropy)
+
+      return 1 - entropy
 
 
    def Plot(self, x, y=None, **kwargs):
