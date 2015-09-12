@@ -27,7 +27,7 @@ setosa = iris.query('Species == "setosa" and PetalWidth > 0.1')
 Selecting columns by giving a list of column names. The return value is a po instance.
 
 ```
-a = iris[["Species", "PetalLength"]]
+only_two_cols = iris[["Species", "PetalLength"]]
 ```
 
 Consult [pandas documentation](http://pandas.pydata.org/pandas-docs/stable/indexing.html) for further information on how to select and query Pandas data frames.
@@ -36,8 +36,8 @@ Consult [pandas documentation](http://pandas.pydata.org/pandas-docs/stable/index
 
 ```
 setosa.to_csv("setosa.csv")
-setosa.to_csv("setosa.csv", index=False)     # no index column
-b.to_csv("b.tsv", sep="\t")                  # tab separated (default is comma separated)
+setosa.to_csv("setosa.csv", index=False)        # no index column
+only_two_cols.to_csv("b.tsv", sep="\t")         # tab separated (default is comma separated)
 ```
 
 ### Cluster rows based on columns
