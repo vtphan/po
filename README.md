@@ -16,7 +16,7 @@ indels = po.read_csv("data/indels.txt", sep="\t")
 
 *iris* is a po instance, which is a glorified pandas data frame.
 
-### Data selection
+### Query and select data
 
 po instances have a *query* method, which wraps around pandas data frame's query method.  Po.query returns a po instance.
 
@@ -51,7 +51,7 @@ Other clusterting methods include hierarchical, spectral, and dbscan.
 Cluster(["PetalWidth", "PetalLength"], method="hierarchical", clusters=3)
 ```
 
-### Visualizing data
+### Visualize data
 
 When one variable (defined by column name) is given, it must be a numerical variable.  The plot is a distribution plot.
 
