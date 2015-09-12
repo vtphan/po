@@ -36,8 +36,8 @@ Consult [pandas documentation](http://pandas.pydata.org/pandas-docs/stable/index
 
 ```
 setosa.to_csv("setosa.csv")
-setosa.to_csv("setosa.csv", index=False)  # no index column
-b.to_csv("b.tsv", sep="\t")
+setosa.to_csv("setosa.csv", index=False)     # no index column
+b.to_csv("b.tsv", sep="\t")                  # tab separated (default is comma separated)
 ```
 
 ### Cluster rows based on columns
