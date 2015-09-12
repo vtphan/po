@@ -3,6 +3,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import kneighbors_graph
 import seaborn as sns
 import pandas
+import matplotlib.pyplot as plt
 
 def read_csv(filename, **kwargs):
    return Po(pandas.read_csv(filename, **kwargs))
@@ -86,5 +87,7 @@ class Po(pandas.core.frame.DataFrame):
       else:
          if self.dtypes[x] in [int, float]:
             sns.distplot(self[x], **kwargs)
+
+      plt.show()
 
 
