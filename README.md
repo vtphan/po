@@ -21,13 +21,13 @@ indels = po.read_csv("data/indels.txt", sep="\t")
 po instances have a *query* method, which wraps around pandas data frame's query method.  Po.query returns a po instance.
 
 ```
-a = iris.query('Species == "setosa" and PetalWidth > 0.1')
+setosa = iris.query('Species == "setosa" and PetalWidth > 0.1')
 ```
 
 Selecting columns by giving a list of column names. The return value is a po instance.
 
 ```
-b = iris[["Species", "PetalLength"]]
+a = iris[["Species", "PetalLength"]]
 ```
 
 Consult [pandas documentation](http://pandas.pydata.org/pandas-docs/stable/indexing.html) for further information on how to select and query Pandas data frames.
@@ -35,7 +35,9 @@ Consult [pandas documentation](http://pandas.pydata.org/pandas-docs/stable/index
 #### Write a po instance (data frame) to file
 
 ```
-a.to_csv("output.csv")
+setosa.to_csv("setosa.csv")
+setosa.to_csv("setosa.csv", index=False)  # no index column
+b.to_csv("b.tsv", sep="\t")
 ```
 
 ### Cluster rows based on columns
