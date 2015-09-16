@@ -1,5 +1,5 @@
 
-Po is a Python module facilitates analysis of tabular data.  It reads in a comma/tab-separated file and allows querying, selection, visualization, clustering and further analysis of the data.
+Po is a Python module facilitates analysis of structured data.  It reads in a comma/tab-separated file and allows querying, selection, visualization, clustering and further analysis of the data.
 
 Po is built on top of pandas, scikit-learn, and seaborn.
 
