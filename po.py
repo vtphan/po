@@ -1,6 +1,7 @@
 from sklearn.cluster import KMeans, DBSCAN, SpectralClustering, AgglomerativeClustering, MeanShift
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import kneighbors_graph
+from sklearn import cross_validation, linear_model
 import seaborn as sns
 import pandas
 import matplotlib.pyplot as plt
@@ -20,6 +21,25 @@ class Po(pandas.core.frame.DataFrame):
 
    def query(self, expr, **kwargs):
       return Po(super(Po,self).query(expr, **kwargs))
+
+   def Regress(self, x, y, test_size=0.2, k=50):
+      if type(x) != list:
+         raise Exception("First parameter must be a list.")
+      if set(x)-set(self.keys()) != set([]):
+         raise Exception("Invalid columns: " + str(unknown_columns))
+      if y not in self.keys():
+         raise Exception("Invalid column: " + y)
+
+      model = linear_model.LinearRegression()
+      X = self.get(x)
+      Y = self.get(y)
+      score = 0
+      for i in range(k):
+         X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, Y, test_size=test_size)
+         model.fit(X_train,y_train)
+         score += model.score(X_test,y_test)
+      print("Average R2 after %d repeated random sub-sampling validation: %.4f" % (k, score/k))
+
 
    def Cluster(self, columns, **argv):
       if type(columns) != list:
