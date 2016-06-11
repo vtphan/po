@@ -1,7 +1,8 @@
 from sklearn.cluster import KMeans, DBSCAN, SpectralClustering, AgglomerativeClustering, MeanShift
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import kneighbors_graph
-from sklearn import cross_validation, linear_model
+from sklearn import cross_validation
+from sklearn.linear_model import LogisticRegression
 import seaborn as sns
 import pandas
 import matplotlib.pyplot as plt
@@ -15,7 +16,7 @@ def read_csv(filename, **kwargs):
 class Po(pandas.core.frame.DataFrame):
    def __init__(self, df):
       super(Po, self).__init__(df)
-      self.estimator = None
+      self.model = None
 
    def __getitem__(self, key):
       a = super(Po, self).__getitem__(key)
@@ -24,23 +25,35 @@ class Po(pandas.core.frame.DataFrame):
    def query(self, expr, **kwargs):
       return Po(super(Po,self).query(expr, **kwargs))
 
-   def Regress(self, x, y):
-      if type(x) != list:
-         raise Exception("First parameter must be a list.")
-      if set(x)-set(self.keys()) != set([]):
-         raise Exception("Invalid columns: " + str(unknown_columns))
-      if y not in self.keys():
-         raise Exception("Invalid column: " + y)
+   def check_columns(self, cols):
+      if type(cols) == str:
+         if cols not in self.keys():
+            raise Exception("Invalid column: " + cols)
+      else:
+         unknown_columns = set(cols)-set(self.keys())
+         if unknown_columns != set([]):
+            raise Exception("Invalid columns: " + str(unknown_columns))
 
-      model = smf.ols(formula='%s ~ %s' % (y, '+'.join(x)), data=self)
-      res = model.fit()
-      print(res.summary())
+   def Regress(self, *cols):
+      columns = list(cols); self.check_columns(columns)
+      y = columns[-1]
+      x = columns[0:-1]
+      self.model = smf.ols(formula='%s ~ %s' % (y, '+'.join(x)), data=self)
+      self.result = self.model.fit()
+      print(self.result.summary())
 
-   def Cluster(self, *columns, **argv):
-      unknown_columns = set(columns)-set(self.keys())
-      if unknown_columns != set([]):
-         raise Exception("Invalid columns: " + str(unknown_columns))
-      columns = list(columns)
+   def Classify(self, *cols, method='logit'):
+      columns = list(cols); self.check_columns(columns)
+      y = columns[-1]
+      x = columns[0:-1]
+      Classifier = dict(logit=LogisticRegression)
+      self.model = Classifier.get(method)()
+      Y = self.get(y)
+      X = self.get(x)
+      self.model.fit(X,Y)
+
+   def Cluster(self, *cols, **argv):
+      columns = list(cols); self.check_columns(columns)
       option = {}
       Estimator = dict(kmeans=KMeans, meanshift=MeanShift, dbscan=DBSCAN, hierarchical=AgglomerativeClustering, spectral=SpectralClustering)
 
@@ -65,7 +78,7 @@ class Po(pandas.core.frame.DataFrame):
          elif argv.get('method') == 'spectral':
             option['affinity'] = argv.get('affinity', 'rbf')
 
-      self.estimator = Estimator.get(method)(**option)
+      self.model = Estimator.get(method)(**option)
 
       ## Select data
       rows = self.get(columns)
@@ -73,7 +86,7 @@ class Po(pandas.core.frame.DataFrame):
          rows = StandardScaler().fit_transform(rows)
 
       ## Cluster and store results
-      labels = self.estimator.fit_predict(rows)
+      labels = self.model.fit_predict(rows)
       self['_'+method+'_'] = labels
 
       if method == 'kmeans':
@@ -86,7 +99,7 @@ class Po(pandas.core.frame.DataFrame):
    def point_entropy(self, points, i):
       d = []
 
-      for c in self.estimator.cluster_centers_:
+      for c in self.model.cluster_centers_:
          d.append(math.sqrt(sum((points[j][i]-c[j])**2 for j in range(len(points)))))
       d.sort()
       if d[0] == 0:
