@@ -60,19 +60,19 @@ only_two_cols.to_csv("b.tsv", sep="\t")         # tab separated (default is comm
 Cluster rows into 3 clusters based on petal widths and lengths.  Clustering is done using [k-means](http://scikit-learn.org/stable/modules/clustering.html#k-means).  Cluster labels are placed in a new column called *_kmeans_*.
 
 ```
-iris.Cluster(["PetalWidth", "PetalLength"], clusters=3)
+iris.Cluster("PetalWidth", "PetalLength", clusters=3)
 ```
 
 In case the number of clusters is not specified, clustering is done using [meanshift](http://scikit-learn.org/stable/modules/clustering.html#mean-shift).  Cluster labels are placed in a new column called *_meanshift_*.
 
 ```
-iris.Cluster(["PetalWidth", "PetalLength"])
+iris.Cluster("PetalWidth", "PetalLength")
 ```
 
 Other clusterting methods include [hierarchical clustering](http://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering), [spectral clustering](http://scikit-learn.org/stable/modules/clustering.html#spectral-clustering), and [dbscan](http://scikit-learn.org/stable/modules/clustering.html#dbscan).
 
 ```
-iris.Cluster(["PetalWidth", "PetalLength"], method="hierarchical", clusters=3)
+iris.Cluster("PetalWidth", "PetalLength", method="hierarchical", clusters=3)
 ```
 
 ### Visualize data

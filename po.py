@@ -36,13 +36,11 @@ class Po(pandas.core.frame.DataFrame):
       res = model.fit()
       print(res.summary())
 
-   def Cluster(self, columns, **argv):
-      if type(columns) != list:
-         raise Exception("First parameter must be a list.")
+   def Cluster(self, *columns, **argv):
       unknown_columns = set(columns)-set(self.keys())
       if unknown_columns != set([]):
          raise Exception("Invalid columns: " + str(unknown_columns))
-
+      columns = list(columns)
       option = {}
       Estimator = dict(kmeans=KMeans, meanshift=MeanShift, dbscan=DBSCAN, hierarchical=AgglomerativeClustering, spectral=SpectralClustering)
 
