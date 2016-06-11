@@ -69,7 +69,7 @@ Classify based on X variables (e.g. petal width and petal length) into categorie
 iris.Classify("PetalWidth", "PetalLength", "Species")
 ```
 
-### Cluster data
+### Clustering (supervised learning)
 Cluster rows into 3 clusters based on petal widths and lengths.  Clustering is done using [k-means](http://scikit-learn.org/stable/modules/clustering.html#k-means).  Cluster labels are placed in a new column called *_kmeans_*.
 
 ```
