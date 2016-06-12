@@ -62,14 +62,14 @@ Correlate X variables (e.g. petal width and petal length) with a Y variable (e.g
 iris.Regress("PetalWidth", "PetalLength", "SepalLength")
 ```
 
-### Classification (unsupervised learning)
+### Classification (supervised learning)
 Classify based on X variables (e.g. petal width and petal length) into categories defined by a Y variable (e.g. species):
 
 ```
 iris.Classify("PetalWidth", "PetalLength", "Species")
 ```
 
-### Clustering (supervised learning)
+### Clustering (unsupervised learning)
 Cluster rows into 3 clusters based on petal widths and lengths.  Clustering is done using [k-means](http://scikit-learn.org/stable/modules/clustering.html#k-means).  Cluster labels are placed in a new column called *_kmeans_*.
 
 ```
