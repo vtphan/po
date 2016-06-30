@@ -95,22 +95,30 @@ When one variable (defined by column name) is given, it must be a numerical vari
 ```
 iris.Plot("SepalLength")
 ```
+<img src="images/1.png">
 
 When a numerical variable is compared against another numerical variable, the plot is a scatter plot.
 
 ```
 iris.Plot("SepalLength", "SepalWidth")
 ```
+<img src="images/2.png">
 
 Colors can be added to differentiate rows with values belonging to a categorical variable.
 
 ```
 iris.Plot("SepalLength", "SepalWidth", hue="Species")
 ```
+<img src="images/3.png">
 
 Scatter plot separated into different columns and rows.
 ```
 iris.Plot("SepalLength", "SepalWidth", col="Species")
+```
+<img src="images/4.png">
+
+This will produce a vertically oriented plot.
+```
 iris.Plot("SepalLength", "SepalWidth", row="Species")
 ```
 
@@ -118,10 +126,23 @@ When a categorical variable is plot against a numerical variable, the plot can b
 
 ```
 iris.Plot("Species", "SepalLength")
+```
+<img src="images/5.png">
+
+```
 iris.Plot("Species", "SepalLength", kind="bar")
+```
+<img src="images/6.png">
+
+```
 iris.Plot("Species", "SepalLength", kind="box")
+```
+<img src="images/7.png">
+
+```
 iris.Plot("Species", "SepalLength", kind="violin")
 ```
+<img src="images/8.png">
 
 
 
