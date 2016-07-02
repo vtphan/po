@@ -102,6 +102,31 @@ Other clusterting methods include [hierarchical clustering](http://scikit-learn.
 iris.Cluster("PetalWidth", "PetalLength", method="hierarchical", clusters=3)
 ```
 
+Show the cluster labels:
+```
+iris.model.labels_
+```
+Output:
+```
+array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], dtype=int32)
+```
+
+Predict:
+```
+iris.model.predict([[0.2,1.4],[2.3,5.0],[1.5,5.0]])
+```
+
+Output (predicted clusters):
+```
+array([1, 2, 0], dtype=int32)
+```
+
 ### Visualize data
 
 When one variable (defined by column name) is given, it must be a numerical variable.  The plot is a distribution plot.
