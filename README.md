@@ -69,6 +69,20 @@ Classify based on X variables (e.g. petal width and petal length) into categorie
 iris.Classify("PetalWidth", "PetalLength", "Species")
 ```
 
+By default, logistic regression is used.  To use another classification method, users need to specify it explicitly:
+
+```
+iris.Classify("PetalWidth", "PetalLength", "Species", method='svm')
+```
+
+Currently, supported classifcation methods include logistic regression, linear SVM, decision tree, random forest, naive bayes, gradient descent, and k-nearest neighbors.
+
+Make prediction:
+```
+iris.model.predict([[0.2,1.4],[2.3,5.0],[1.5,5.0]])
+```
+This should return the array ['setosa', 'virginica', 'versicolor'].
+
 ### Clustering (unsupervised learning)
 Cluster rows into 3 clusters based on petal widths and lengths.  Clustering is done using [k-means](http://scikit-learn.org/stable/modules/clustering.html#k-means).  Cluster labels are placed in a new column called *_kmeans_*.
 

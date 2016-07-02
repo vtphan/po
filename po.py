@@ -1,8 +1,10 @@
 from sklearn.cluster import KMeans, DBSCAN, SpectralClustering, AgglomerativeClustering, MeanShift
 from sklearn.preprocessing import StandardScaler
-from sklearn.neighbors import kneighbors_graph
-from sklearn import cross_validation
-from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import kneighbors_graph, KNeighborsClassifier
+from sklearn import cross_validation, svm, tree
+from sklearn.linear_model import LogisticRegression, SGDClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.naive_bayes import GaussianNB
 import seaborn as sns
 import pandas
 import matplotlib.pyplot as plt
@@ -42,14 +44,22 @@ class Po(pandas.core.frame.DataFrame):
       self.result = self.model.fit()
       print(self.result.summary())
 
-   def Classify(self, *cols, method='logit'):
+   def Classify(self, *cols, method='logit', **argv):
       columns = list(cols); self.check_columns(columns)
       y = columns[-1]
       x = columns[0:-1]
-      Classifier = dict(logit=LogisticRegression)
-      self.model = Classifier.get(method)()
       Y = self.get(y)
       X = self.get(x)
+      Classifier = dict(
+      	logit=LogisticRegression,
+      	svm=svm.LinearSVC,
+      	decision_tree=tree.DecisionTreeClassifier,
+      	random_forest=RandomForestClassifier,
+      	naive_bayes=GaussianNB,
+      	gradient_descent=SGDClassifier,
+      	knn=KNeighborsClassifier,
+      	)
+      self.model = Classifier.get(method)(**argv)
       self.model.fit(X,Y)
 
    def Cluster(self, *cols, **argv):
