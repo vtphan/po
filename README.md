@@ -1,4 +1,4 @@
-<img src="images/po.png" width="200px" align="middle">
+<center><img src="images/po.png" width="200px"></center>
 
 Po is a Python module facilitates analysis of structured data.  It reads in a comma/tab-separated file and allows querying, selection, visualization, clustering and further analysis of the data.
 
